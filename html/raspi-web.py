@@ -2,8 +2,13 @@ from flask import (
     Flask, request, render_template, make_response, redirect, url_for, Response
 )
 import cv2
+import time
+from weatherCrawling import seoul
+from celcius import humidity, temperature
+
 app = Flask(__name__)
 vc = cv2.VideoCapture(0)
+
 
 def gen():
     while True:
@@ -15,7 +20,12 @@ def gen():
 
 @app.route('/get_camera')
 def get_camera():
-    return render_template("get_cam.html")
+    get_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    currentTemp = seoul[1]
+    currentHum = seoul[2]
+    currentTemp2 = temperature
+    currentHum2 = humidity
+    return render_template("get_cam.html", cur_time = get_time, currentTemp = currentTemp, currentHum = currentHum, currentTemp2 = currentTemp2, currentHum2 = currentHum2)
 
 @app.route('/video_feed')
 def video_feed():
