@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<link rel="stylesheet" href="rpi.css">
 <head>
     <title>Raspberry Camera</title>
 </head>
@@ -21,21 +22,20 @@
             현재시각 : {{ cur_time }}
         </center>
     </p>
-    <p>
-        <center>
-            <a>기상청 기준</a>
-            <p>위치: 서울</p>
-            <p>현재 기온 : {{ currentTemp }}</p>
-            <p>현재 습도 : {{ currentHum }}</p>
-        </center>
-    </p>
-    <p>
-        <center>
-            <a>스마트팜 속 온습도</a>
-            <p>현재 기온 : {{ currentTemp2 }}</p>
-            <p>현재 습도 : {{ currentHum2 }}</p>
-        </center>
-    </p>
+    <div class="weather">
+        <div class="temp_humi">
+          <a>기상청 기준</a>
+          <p>위치: 서울</p>
+          <p>현재 기온 : {{ currentTemp }}</p>
+          <p>현재 습도 : {{ currentHum }}</p>
+          
+        </div>
+        <div class="temp_humi">
+          <a>스마트팜 속 온습도</a>
+          <p>현재 기온 : {{ currentTemp2 }}</p>
+          <p>현재 습도 : {{ currentHum2 }}</p>  
+        </div>
+      </div>
 </body>
 
 </html>
