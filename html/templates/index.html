@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Raspberry Camera</title>
+    <link rel="stylesheet" href="rpi.css">
+</head>
+
+<body>
+    <h1>
+        <center>
+            건국이네 상추 농장(8조)
+        </center>
+    </h1>
+    <h3>
+        <center>
+            <img src="{{ url_for('video_feed') }}" width="50%">
+        </center>
+    </h3>
+    <p>
+        <center>
+            현재시각 : {{ cur_time }}
+        </center>
+    </p>
+    <div class="weather">
+        <div class="temp_humi">
+            <a>기상청 기준</a>
+            <p>위치: 서울</p>
+            <p>현재 기온 : {{ currentTemp }}</p>
+            <p>현재 습도 : {{ currentHum }}</p>
+        </div>
+        <form action="http://192.168.86.91:5000/" method="post">
+            <div class="temp_humi">
+                <p>식물 적정 온습도 선택</p>
+                <select name='plantId'>
+                    <option selected="selected">선택</option>
+                    {% for ml in plant %}
+                    <option> {{ml}} </option>
+                    {% endfor %}
+                </select>
+                <button type="submit" id="admit">확인</button>
+                <p>선택한 식물 : {{ plantName }}</p>
+                <p>희망 온도 : {{ temp }}</p>
+                <p>희망 습도 : {{ hum }}</p>
+            </div>
+        </form>
+        <div class="temp_humi">
+            <a>스마트팜 속 온습도</a>
+            <p>현재 기온 : {{ currentTemp2 }}</p>
+            <p>현재 습도 : {{ currentHum2 }}</p>
+        </div>
+    </div>
+</body>
+<style>
+    .weather {
+        margin-left: 15%;
+    }
+
+    .temp_humi {
+        margin-left: 10%;
+        float: left;
+    }
+</style>
+
+</html>
